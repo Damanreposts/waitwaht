@@ -1,5 +1,6 @@
-local HttpService = game:GetService("HttpService")
+-- Services
 local player = game.Players.LocalPlayer
+local HttpService = game:GetService("HttpService")
 
 -- Correct credentials
 local correctUsername = "skibidiowner"
