@@ -1,12 +1,12 @@
--- Services
-local player = game.Players.LocalPlayer
+-- Create a simple login GUI and execute a script upon successful login
 local HttpService = game:GetService("HttpService")
+local player = game.Players.LocalPlayer
 
 -- Correct credentials
 local correctUsername = "skibidiowner"
 local correctPassword = "openworldlogincode23"
 
--- GUI Elements
+-- Create GUI
 local ScreenGui = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
 local UsernameLabel = Instance.new("TextLabel")
@@ -86,9 +86,14 @@ LoginButton.MouseButton1Click:Connect(function()
 
         -- Load and execute the script from the provided URL
         local scriptUrl = "https://raw.githubusercontent.com/Damanreposts/cool-thing/refs/heads/main/robloxscript"
-        local scriptContent = game:HttpGet(scriptUrl)
+        local scriptContent = HttpService:GetAsync(scriptUrl)
         loadstring(scriptContent)()
     else
         print("Incorrect username or password!")
+    end
+end)
+
+]])
+
     end
 end)
