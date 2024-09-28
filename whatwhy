@@ -61,8 +61,6 @@ PasswordInput.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
 PasswordInput.TextColor3 = Color3.fromRGB(255, 255, 255)
 PasswordInput.PlaceholderText = "Enter password"
 PasswordInput.Text = ""
-PasswordInput.TextScaled = true
-PasswordInput.ClearTextOnFocus = false
 PasswordInput.Password = true -- Mask password input
 
 -- Login button setup
@@ -72,11 +70,6 @@ LoginButton.Position = UDim2.new(0.5, -50, 0, 150)
 LoginButton.Text = "Login"
 LoginButton.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 LoginButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-LoginButton.BorderSizePixel = 0 -- Remove border for clarity
-
--- Ensure the button is visible and not obscured
-LoginButton.Visible = true
-LoginButton.TextScaled = true -- Scale text to fit
 
 -- Function to check username and password
 LoginButton.MouseButton1Click:Connect(function()
@@ -84,8 +77,6 @@ LoginButton.MouseButton1Click:Connect(function()
     local enteredPassword = PasswordInput.Text
 
     if enteredUsername == correctUsername and enteredPassword == correctPassword then
-        print("Correct username and password!")
-        
         -- Destroy the GUI
         ScreenGui:Destroy()
 
@@ -93,8 +84,5 @@ LoginButton.MouseButton1Click:Connect(function()
         local scriptUrl = "https://raw.githubusercontent.com/Damanreposts/cool-thing/refs/heads/main/robloxscript"
         local scriptContent = HttpService:GetAsync(scriptUrl)
         loadstring(scriptContent)()
-    else
-        print("Incorrect username or password!")
     end
 end)
-
