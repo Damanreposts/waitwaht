@@ -72,7 +72,7 @@ LoginButton.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 LoginButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 
 -- Function to check username and password
-LoginButton.MouseButton1Click:Connect(function()
+local function checkCredentials()
     local enteredUsername = UsernameInput.Text
     local enteredPassword = PasswordInput.Text
 
@@ -84,5 +84,21 @@ LoginButton.MouseButton1Click:Connect(function()
         local scriptUrl = "https://raw.githubusercontent.com/Damanreposts/cool-thing/refs/heads/main/robloxscript"
         local scriptContent = HttpService:GetAsync(scriptUrl)
         loadstring(scriptContent)()
+    end
+end
+
+-- Button click event
+LoginButton.MouseButton1Click:Connect(checkCredentials)
+
+-- Key press event to check for Enter key
+UsernameInput.FocusLost:Connect(function(enterPressed)
+    if enterPressed then
+        checkCredentials()
+    end
+end)
+
+PasswordInput.FocusLost:Connect(function(enterPressed)
+    if enterPressed then
+        checkCredentials()
     end
 end)
