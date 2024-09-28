@@ -1,0 +1,93 @@
+local HttpService = game:GetService("HttpService")
+local player = game.Players.LocalPlayer
+
+-- Correct credentials
+local correctUsername = "skibidiowner"
+local correctPassword = "openworldlogincode23"
+
+-- GUI Elements
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local UsernameLabel = Instance.new("TextLabel")
+local UsernameInput = Instance.new("TextBox")
+local PasswordLabel = Instance.new("TextLabel")
+local PasswordInput = Instance.new("TextBox")
+local LoginButton = Instance.new("TextButton")
+
+-- Setting up the ScreenGui (parenting it to the player's GUI)
+ScreenGui.Parent = player:WaitForChild("PlayerGui")
+
+-- Frame setup
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+Frame.Size = UDim2.new(0, 300, 0, 200)
+Frame.Position = UDim2.new(0.5, -150, 0.5, -100)
+Frame.BorderSizePixel = 2
+Frame.BorderColor3 = Color3.fromRGB(0, 255, 0) -- Green outline
+Frame.Active = true
+Frame.Draggable = true
+
+-- Username label setup
+UsernameLabel.Parent = Frame
+UsernameLabel.Text = "Username"
+UsernameLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+UsernameLabel.BackgroundTransparency = 1
+UsernameLabel.Size = UDim2.new(0, 280, 0, 30)
+UsernameLabel.Position = UDim2.new(0, 10, 0, 10)
+
+-- Username input setup
+UsernameInput.Parent = Frame
+UsernameInput.Size = UDim2.new(0, 280, 0, 30)
+UsernameInput.Position = UDim2.new(0, 10, 0, 40)
+UsernameInput.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+UsernameInput.TextColor3 = Color3.fromRGB(255, 255, 255)
+UsernameInput.PlaceholderText = "Enter username"
+UsernameInput.Text = ""
+
+-- Password label setup
+PasswordLabel.Parent = Frame
+PasswordLabel.Text = "Password"
+PasswordLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+PasswordLabel.BackgroundTransparency = 1
+PasswordLabel.Size = UDim2.new(0, 280, 0, 30)
+PasswordLabel.Position = UDim2.new(0, 10, 0, 80)
+
+-- Password input setup
+PasswordInput.Parent = Frame
+PasswordInput.Size = UDim2.new(0, 280, 0, 30)
+PasswordInput.Position = UDim2.new(0, 10, 0, 110)
+PasswordInput.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+PasswordInput.TextColor3 = Color3.fromRGB(255, 255, 255)
+PasswordInput.PlaceholderText = "Enter password"
+PasswordInput.Text = ""
+PasswordInput.TextScaled = true
+PasswordInput.ClearTextOnFocus = false
+PasswordInput.Password = true -- Mask password input
+
+-- Login button setup
+LoginButton.Parent = Frame
+LoginButton.Size = UDim2.new(0, 100, 0, 40)
+LoginButton.Position = UDim2.new(0.5, -50, 0, 150)
+LoginButton.Text = "Login"
+LoginButton.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+LoginButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+
+-- Function to check username and password
+LoginButton.MouseButton1Click:Connect(function()
+    local enteredUsername = UsernameInput.Text
+    local enteredPassword = PasswordInput.Text
+
+    if enteredUsername == correctUsername and enteredPassword == correctPassword then
+        print("Correct username and password!")
+        
+        -- Destroy the GUI
+        ScreenGui:Destroy()
+
+        -- Load and execute the script from the provided URL
+        local scriptUrl = "https://raw.githubusercontent.com/Damanreposts/cool-thing/refs/heads/main/robloxscript"
+        local scriptContent = game:HttpGet(scriptUrl)
+        loadstring(scriptContent)()
+    else
+        print("Incorrect username or password!")
+    end
+end)
