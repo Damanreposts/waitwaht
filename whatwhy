@@ -87,7 +87,7 @@ local function checkCredentials()
     end
 end
 
--- Button click event
+-- Button click event to check credentials when the login button is clicked
 LoginButton.MouseButton1Click:Connect(checkCredentials)
 
 -- Key press event to check for Enter key
