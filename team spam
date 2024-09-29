@@ -1,0 +1,19 @@
+-- Team Spamming Script
+local HttpService = game:GetService("HttpService")
+local TeamsService = game:GetService("Teams")
+
+-- Function to spam teams named "wa"
+local function spamTeams()
+    while true do
+        local newTeam = Instance.new("Team")
+        newTeam.Name = "wa"  -- All teams named "wa"
+        newTeam.TeamColor = BrickColor.random()  -- Random color for each team
+        newTeam.Parent = TeamsService  -- Parent team to the Teams service
+        
+        -- Prevent the game from freezing
+        wait(0.1)
+    end
+end
+
+-- Start spamming teams
+spamTeams()
